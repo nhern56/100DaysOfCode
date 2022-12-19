@@ -6,8 +6,8 @@ print(f"{row1}\n{row2}\n{row3}")
 position = input("Where do you want to put the treasure? ")
 
 #horizaontal and vertical
-h = int(position[0])
-v = int(position[1])
+h = int(position[1])
+v = int(position[0])
 
 map[h-1][v-1] = "X"
 
