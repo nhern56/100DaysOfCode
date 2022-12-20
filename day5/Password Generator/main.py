@@ -42,4 +42,9 @@ for i in range(0,nr_numbers):
 
 random.shuffle(password_list)
 
-print(password_list)
+password2 =""
+
+for char in password_list:
+  password2 += char
+
+print(password2)
