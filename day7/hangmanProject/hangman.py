@@ -9,8 +9,10 @@ word_length = len(chosen_word)
 end_of_game = False
 lives = 6
 
+print(hangman_art.logo)
+
 #Testing code
-print(f'Pssst, the solution is {chosen_word}.')
+print(f'\nPssst, the solution is {chosen_word}.')
 
 #Create blanks
 display = []
