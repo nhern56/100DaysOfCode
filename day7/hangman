@@ -1,8 +1,70 @@
+#Step 4
+
 import random
 
-word_list = ["aardvark", "baboon", "camel"]
+stages = ['''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ / \  |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ /    |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+      |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========
+''', '''
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========
+''']
+
+end_of_game = False
+word_list = ["ardvark", "baboon", "camel"]
 chosen_word = random.choice(word_list)
 word_length = len(chosen_word)
+
+lives = 6
 
 #Testing code
 print(f'Pssst, the solution is {chosen_word}.')
@@ -12,33 +74,33 @@ display = []
 for _ in range(word_length):
     display += "_"
 
-print(display)
+while not end_of_game:
+    guess = input("\nGuess a letter: ").lower()
 
-game_done = False
-count = 6
+    #Check guessed letter
+    for position in range(word_length):
+        letter = chosen_word[position]
+        if letter == guess:
+            print("\n")
+            display[position] = letter
 
-while not game_done:
-  guess = input("Guess a letter: ").lower()
-  for position in range(word_length):
-    letter = chosen_word[position]
-    if letter == guess:
-      display[position] = letter 
-  
+    if guess not in chosen_word:
+        lives -= 1
+        if lives <= 5 and lives > 1:
+          print(f"\nYou have {lives} tries left")
+        if lives == 1:
+          print(f"\nYou have {lives} try left")
+        if lives == 0:
+            end_of_game = True
+            print("\nYou lose.")
 
-  if "_" not in display:
-    game_done = True
-    print("You win!")
+    #Join all the elements in the list and turn it into a String.
+    print(f"{' '.join(display)}")
 
-  print(display)
+    #Check if user has got all letters.
+    if "_" not in display:
+        end_of_game = True
+        print("\nYou win.")
 
-  if guess not in chosen_word:
-    count -= 1
-    if count <= 5 and count > 1:
-      print(f"You have {count} tries left")
-    if count == 1:
-      print(f"You have {count} try left")
-    if count == 0:
-      game_done = True
-      print("You lose")
-
-  
+    #print the ASCII art from 'stages' that corresponds to the current number of 'lives' the user has remaining.
+    print(stages[lives])
