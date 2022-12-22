@@ -1,5 +1,3 @@
-#Step 4
-
 import random
 
 stages = ['''
